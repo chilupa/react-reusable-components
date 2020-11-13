@@ -1,34 +1,28 @@
-name: Linter
+name: Lint
 
-on: [pull_request]
+on: push
 
 jobs:
-  lint:
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
-    name: yeslinter
-
-    strategy:
-      matrix:
-        node-version: ['12.*']
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+      - name: Check out Git repository
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12
 
-      - name: npm install
-        run: npm ci --ignore-scripts
+      # ESLint and Prettier must be in `package.json`
+      - name: Install Node.js dependencies
+        run: npm install
 
-      - name: Run ESLint
-        uses: ./
+      - name: Run linters
+        uses: chilupa/linter@v1.0.0
         with:
-          eslint-config-path: '.eslintrc.js'
+          repo-token: ${{ secrets.github_token }}
+          eslint-config-path: '.eslintrc'
           eslintignore-path: '.eslintignore'
-          custom-directory: './'
-          repo-token: ${{secrets.GITHUB_TOKEN}}
