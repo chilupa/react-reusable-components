@@ -23,6 +23,6 @@ jobs:
       - name: Run linters
         uses: chilupa/linter@v1.0.0
         with:
-          github_token: ${{ secrets.github_token }}
-          # Enable linters
-          eslint: true
+          repo-token: ${{ secrets.github_token }}
+          eslint-config-path: '.eslintrc'
+          eslintignore-path: '.eslintignore'
