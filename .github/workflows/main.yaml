@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Run linters
-        uses: chilupa/linter@v1
+        uses: chilupa/linter@v1.0.0
         with:
           github_token: ${{ secrets.github_token }}
           # Enable linters
