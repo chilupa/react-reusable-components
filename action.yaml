@@ -1,0 +1,19 @@
+name: linter
+author: Pavan Chilukuri
+description: Runs linter on your PRs
+inputs:
+  repo-token:
+    description: 'github security token'
+    required: true
+  eslint-config-path:
+    description: 'relative path to .eslintrc file'
+    required: true
+  eslintignore-path:
+    description: 'relative path to .eslintignore file'
+    required: true
+branding:
+  icon: 'check-circle'
+  color: 'green'
+runs:
+  using: 'node12'
+  main: 'main.js'
