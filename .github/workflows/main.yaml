@@ -30,5 +30,4 @@ jobs:
         with:
           eslint-config-path: '.eslintrc.js'
           eslintignore-path: '.eslintignore'
-          custom-directory: './'
           repo-token: ${{secrets.GITHUB_TOKEN}}
